@@ -46,7 +46,12 @@ export default function Home() {
           channel,
           layout: 'video',
           width: '100%',
-          height: '100%'
+          height: '100%',
+          parent: [
+            'vercel.app',
+            'www.vercel.app',
+            process.env.NEXT_PUBLIC_SITE_URL as string
+          ]
         });
 
         setVideoPlayers((prevState) => {
@@ -97,7 +102,7 @@ export default function Home() {
               <iframe
                 key={id}
                 id={id}
-                src={`https://www.twitch.tv/embed/${channel}/chat?parent=${process.env.NEXT_PUBLIC_SITE_URL}`}
+                src={`https://www.twitch.tv/embed/${channel}/chat?parent=https://vercel.app?parent=https://www.vercel.app?parent=${process.env.NEXT_PUBLIC_SITE_URL}`}
                 height="100%"
                 width="100%"
               ></iframe>
