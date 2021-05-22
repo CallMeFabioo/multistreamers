@@ -13,13 +13,16 @@ type VideoPlayer = {
 };
 
 const buildChatUrl = (channel = '') => {
+  const urlWithoutProtocol = process.env.NEXT_PUBLIC_SITE_URL?.replace(
+    /http(s)?:\/\//i,
+    ''
+  ) as string;
+
   const params = new URLSearchParams([
     ['parent', 'vercel.app'],
     ['parent', 'www.vercel.app'],
-    [
-      'parent',
-      process.env.NEXT_PUBLIC_SITE_URL?.replace(/http(s)?:\/\//i, '') as string
-    ]
+    ['parent', urlWithoutProtocol],
+    ['parent', `www.${urlWithoutProtocol}`]
   ]);
 
   const url = `https://www.twitch.tv/embed/${channel}/chat?${params}`;
