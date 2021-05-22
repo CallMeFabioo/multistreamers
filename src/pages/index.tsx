@@ -18,7 +18,7 @@ const buildChatUrl = (channel = '') => {
     ['parent', 'www.vercel.app'],
     [
       'parent',
-      process.env.NEXT_PUBLIC_SITE_URL?.replace('http://', '') as string
+      process.env.NEXT_PUBLIC_SITE_URL?.replace(/http(s)?:\/\//i, '') as string
     ]
   ]);
 
