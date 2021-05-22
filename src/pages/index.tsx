@@ -12,6 +12,21 @@ type VideoPlayer = {
   loaded: boolean;
 };
 
+const buildChatUrl = (channel = '') => {
+  const params = new URLSearchParams([
+    ['parent', 'vercel.app'],
+    ['parent', 'www.vercel.app'],
+    [
+      'parent',
+      process.env.NEXT_PUBLIC_SITE_URL?.replace('http://', '') as string
+    ]
+  ]);
+
+  const url = `https://www.twitch.tv/embed/${channel}/chat?${params}`;
+
+  return url;
+};
+
 export default function Home() {
   const [videoPlayers, setVideoPlayers] = useState<Array<VideoPlayer>>(() =>
     Array.from({ length: 4 }).map(() => ({
@@ -97,7 +112,7 @@ export default function Home() {
               <iframe
                 key={id}
                 id={id}
-                src={`https://www.twitch.tv/embed/${channel}/chat?parent=https://vercel.app&parent=https://www.vercel.app&parent=${process.env.NEXT_PUBLIC_SITE_URL}`}
+                src={buildChatUrl(channel)}
                 height="100%"
                 width="100%"
               ></iframe>
