@@ -1,53 +1,30 @@
-import tw from 'twin.macro';
+import 'twin.macro';
 import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { loadTwitchScrit } from 'lib/loadTwichScript';
+import { urlWithoutProtocol } from 'lib/urlWithoutProtocol';
 
 import { SearchInput } from 'components/SearchInput';
-
-type VideoPlayer = {
-  id: string;
-  channel: string;
-  loaded: boolean;
-};
-
-const isDev = process.env.NODE_ENV !== 'production';
-
-const urlWithoutProtocol = isDev
-  ? 'localhost'
-  : (process.env.NEXT_PUBLIC_SITE_URL?.replace(/http(s)?:\/\//i, '') as string);
-
-const buildChatUrl = (channel = '') => {
-  const params = new URLSearchParams([
-    ['parent', urlWithoutProtocol],
-    ['parent', `www.${urlWithoutProtocol}`]
-  ]);
-
-  const url = `https://www.twitch.tv/embed/${channel}/chat?${params}`;
-
-  return url;
-};
+import { VideoContainer } from 'components/VideoContainer';
+import { Container } from 'components/Container';
+import { CloseVideoContainerButton } from 'components/CloseVideoContainerButton';
+import { VideoPlayerBorderContainer } from 'components/VideoPlayerBorderContainer';
+import { StreamersChat, VideoPlayer } from 'components/StreamersChat';
 
 export default function Home() {
-  const [videoPlayers, setVideoPlayers] = useState<Array<VideoPlayer>>(() =>
-    Array.from({ length: 4 }).map(() => ({
-      id: nanoid(),
-      channel: '',
-      loaded: false
-    }))
-  );
+  const [videoPlayers, setVideoPlayers] = useState<Array<VideoPlayer>>([]);
+  const [searchInputVisiblility, setSearchInputVisibility] = useState(true);
 
-  const onClick = (videoPlayerId: string, channel: string) => {
-    setVideoPlayers((prevState) => {
-      return prevState.map((state) => {
-        if (state.id === videoPlayerId) {
-          state = { ...state, channel };
-        }
-
-        return state;
-      });
-    });
+  const addStreamer = (channel: string) => {
+    setVideoPlayers((prevState) => [
+      ...prevState,
+      {
+        id: nanoid(),
+        channel,
+        loaded: false
+      }
+    ]);
   };
 
   const alreadyStreamLoaded = videoPlayers.some((v) => v.loaded);
@@ -80,49 +57,32 @@ export default function Home() {
     });
   }, [videoPlayers]);
 
+  const removeStreamer = (id: string) => {
+    setVideoPlayers((prevState) => prevState.filter((s) => s.id !== id));
+  };
+
   return (
-    <div
-      css={[
-        tw`text-white h-full p-2 grid grid-rows-1 gap-2 grid-cols-2 items-center justify-between justify-self-center`,
-        alreadyStreamLoaded && tw`grid-cols-4`
-      ]}
-    >
-      <main
-        css={[
-          tw`grid grid-cols-2 col-span-2 gap-2 h-full`,
-          alreadyStreamLoaded && tw`col-span-3`
-        ]}
+    <Container hasChat={alreadyStreamLoaded}>
+      <VideoContainer
+        videos={videoPlayers.length}
+        hasChat={alreadyStreamLoaded}
       >
-        {videoPlayers.map((videoPlayer) => (
-          <div
-            key={videoPlayer.id}
-            tw="border-2 border-dashed border-gray-800 rounded flex items-center justify-center"
-          >
-            {videoPlayer.channel ? (
-              <div id={videoPlayer.id} tw="w-full h-full"></div>
-            ) : (
-              <SearchInput
-                onClick={(channel) => onClick(videoPlayer.id, channel)}
-              />
-            )}
-          </div>
+        {videoPlayers.map(({ id }) => (
+          <VideoPlayerBorderContainer key={id}>
+            <CloseVideoContainerButton onClick={() => removeStreamer(id)} />
+            <div id={id} tw="w-full h-full" />
+          </VideoPlayerBorderContainer>
         ))}
-      </main>
-      {alreadyStreamLoaded && (
-        <aside tw="col-span-1 gap-2 h-full">
-          {videoPlayers.map(({ id, channel, loaded }) =>
-            channel && loaded ? (
-              <iframe
-                key={id}
-                id={id}
-                src={buildChatUrl(channel)}
-                height="100%"
-                width="100%"
-              ></iframe>
-            ) : null
-          )}
-        </aside>
-      )}
-    </div>
+        {videoPlayers.length < 9 && searchInputVisiblility && (
+          <VideoPlayerBorderContainer>
+            <CloseVideoContainerButton
+              onClick={() => setSearchInputVisibility(false)}
+            />
+            <SearchInput onClick={addStreamer} />
+          </VideoPlayerBorderContainer>
+        )}
+      </VideoContainer>
+      {alreadyStreamLoaded && <StreamersChat videoPlayers={videoPlayers} />}
+    </Container>
   );
 }

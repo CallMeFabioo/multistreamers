@@ -1,5 +1,5 @@
 import 'twin.macro';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export type SearchInputProps = {
   onClick: (channel: string) => void;
@@ -10,6 +10,11 @@ export const SearchInput = ({ onClick }: SearchInputProps) => {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChannel(e.target.value);
+  };
+
+  const handleClick = () => {
+    setChannel('');
+    onClick(channel);
   };
 
   return (
@@ -23,7 +28,7 @@ export const SearchInput = ({ onClick }: SearchInputProps) => {
       <button
         type="button"
         tw="px-4 py-2 border rounded-md rounded-l-none border-transparent text-sm font-medium text-white bg-indigo-600 group-hocus:(ring ring-indigo-700) hover:bg-indigo-700 focus:(outline-none ring ring-indigo-500)"
-        onClick={() => onClick(channel)}
+        onClick={handleClick}
       >
         <svg
           tw="w-6 h-6"
