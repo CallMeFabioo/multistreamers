@@ -12,15 +12,15 @@ type VideoPlayer = {
   loaded: boolean;
 };
 
-const buildChatUrl = (channel = '') => {
-  const urlWithoutProtocol = process.env.NEXT_PUBLIC_SITE_URL?.replace(
-    /http(s)?:\/\//i,
-    ''
-  ) as string;
+const urlWithoutProtocol = process.env.NEXT_PUBLIC_SITE_URL?.replace(
+  /http(s)?:\/\//i,
+  ''
+) as string;
 
+const buildChatUrl = (channel = '') => {
   const params = new URLSearchParams([
-    ['parent', 'vercel.app'],
-    ['parent', 'www.vercel.app'],
+    // ['parent', 'vercel.app'],
+    // ['parent', 'www.vercel.app'],
     ['parent', urlWithoutProtocol],
     ['parent', `www.${urlWithoutProtocol}`]
   ]);
@@ -64,7 +64,8 @@ export default function Home() {
           channel,
           layout: 'video',
           width: '100%',
-          height: '100%'
+          height: '100%',
+          parent: [urlWithoutProtocol, `www.${urlWithoutProtocol}`]
         });
 
         setVideoPlayers((prevState) => {
