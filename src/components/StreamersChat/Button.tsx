@@ -1,17 +1,13 @@
-import { ReactNode } from 'react';
 import tw from 'twin.macro';
+import type { ReactNode } from 'react';
 
-export type StreamersChatButtonProps = {
+export type ButtonProps = {
   active?: boolean;
   children: ReactNode;
   onClick: () => void;
 };
 
-export const StreamersChatButton = ({
-  active = false,
-  onClick,
-  children
-}: StreamersChatButtonProps) => (
+export const Button = ({ active = false, onClick, children }: ButtonProps) => (
   <button
     onClick={onClick}
     css={[

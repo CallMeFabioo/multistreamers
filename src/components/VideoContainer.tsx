@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
 import tw, { styled } from 'twin.macro';
+import type { ReactNode } from 'react';
 
 export type VideoContainerProps = {
   videos: number;
@@ -20,8 +20,6 @@ export const VideoContainer = ({
   children
 }: VideoContainerProps) => {
   let rows, cols;
-
-  console.log(videos);
 
   if (videos < 4 && videos >= 1) {
     rows = 2;

@@ -1,6 +1,6 @@
 import tw from 'twin.macro';
-import { useState } from 'react';
-import { StreamersChatButton } from './StreamersChatButton';
+import { useEffect, useState } from 'react';
+import { Button } from './Button';
 import { buildChatUrl } from 'lib/buildChatUrl';
 
 export type VideoPlayer = {
@@ -9,26 +9,26 @@ export type VideoPlayer = {
   loaded: boolean;
 };
 
-export type StreamersChatProps = {
+export type ChatProps = {
   videoPlayers: Array<VideoPlayer>;
 };
 
-export const StreamersChat = ({ videoPlayers }: StreamersChatProps) => {
+export const StreamersChat = ({ videoPlayers }: ChatProps) => {
   const [active, setActive] = useState(
     () => videoPlayers[videoPlayers.length - 1].id
   );
+
+  useEffect(() => {
+    setActive(() => videoPlayers[videoPlayers.length - 1].id);
+  }, [videoPlayers]);
 
   return (
     <aside tw="col-span-1 gap-2 h-full relative">
       <div tw="grid grid-cols-4">
         {videoPlayers.map(({ id, channel }) => (
-          <StreamersChatButton
-            key={id}
-            active={active === id}
-            onClick={() => setActive(id)}
-          >
+          <Button key={id} active={active === id} onClick={() => setActive(id)}>
             {channel}
-          </StreamersChatButton>
+          </Button>
         ))}
       </div>
 
@@ -38,7 +38,7 @@ export const StreamersChat = ({ videoPlayers }: StreamersChatProps) => {
             key={id}
             tw="absolute w-full opacity-0"
             css={[
-              { height: 'calc(100vh - 52px)' },
+              tw`height[calc(100vh - 52px)]`,
               active === id ? tw`opacity-100` : null
             ]}
           >

@@ -1,5 +1,5 @@
 import 'twin.macro';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { loadTwitchScrit } from 'lib/loadTwichScript';
@@ -8,24 +8,11 @@ import { urlWithoutProtocol } from 'lib/urlWithoutProtocol';
 import { SearchInput } from 'components/SearchInput';
 import { VideoContainer } from 'components/VideoContainer';
 import { Container } from 'components/Container';
-import { CloseVideoContainerButton } from 'components/CloseVideoContainerButton';
-import { VideoPlayerBorderContainer } from 'components/VideoPlayerBorderContainer';
 import { StreamersChat, VideoPlayer } from 'components/StreamersChat';
 
 export default function Home() {
   const [videoPlayers, setVideoPlayers] = useState<Array<VideoPlayer>>([]);
-  const [searchInputVisiblility, setSearchInputVisibility] = useState(true);
-
-  const addStreamer = (channel: string) => {
-    setVideoPlayers((prevState) => [
-      ...prevState,
-      {
-        id: nanoid(),
-        channel,
-        loaded: false
-      }
-    ]);
-  };
+  const [hideSearchInput, setHideSearchInput] = useState(true);
 
   const alreadyStreamLoaded = videoPlayers.some((v) => v.loaded);
 
@@ -34,6 +21,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    console.log(videoPlayers);
     videoPlayers.forEach(({ id, channel, loaded }) => {
       if (channel && !loaded) {
         new (window as DefaultWindow).Twitch.Embed(id, {
@@ -57,9 +45,22 @@ export default function Home() {
     });
   }, [videoPlayers]);
 
-  const removeStreamer = (id: string) => {
-    setVideoPlayers((prevState) => prevState.filter((s) => s.id !== id));
+  const addStreamer = (channel: string) => {
+    setVideoPlayers((prevState) => [
+      ...prevState,
+      {
+        id: nanoid(),
+        channel,
+        loaded: false
+      }
+    ]);
   };
+
+  const removeStreamer = useCallback(
+    (id) =>
+      setVideoPlayers((prevState) => prevState.filter((s) => s.id !== id)),
+    []
+  );
 
   return (
     <Container hasChat={alreadyStreamLoaded}>
@@ -68,18 +69,20 @@ export default function Home() {
         hasChat={alreadyStreamLoaded}
       >
         {videoPlayers.map(({ id }) => (
-          <VideoPlayerBorderContainer key={id}>
-            <CloseVideoContainerButton onClick={() => removeStreamer(id)} />
+          <Container.Border key={id}>
+            <Container.CloseButton onClick={() => removeStreamer(id)} />
             <div id={id} tw="w-full h-full" />
-          </VideoPlayerBorderContainer>
+          </Container.Border>
         ))}
-        {videoPlayers.length < 9 && searchInputVisiblility && (
-          <VideoPlayerBorderContainer>
-            <CloseVideoContainerButton
-              onClick={() => setSearchInputVisibility(false)}
-            />
+        {videoPlayers.length < 9 && hideSearchInput && (
+          <Container.Border>
+            {videoPlayers.length >= 1 && (
+              <Container.CloseButton
+                onClick={() => setHideSearchInput(false)}
+              />
+            )}
             <SearchInput onClick={addStreamer} />
-          </VideoPlayerBorderContainer>
+          </Container.Border>
         )}
       </VideoContainer>
       {alreadyStreamLoaded && <StreamersChat videoPlayers={videoPlayers} />}
