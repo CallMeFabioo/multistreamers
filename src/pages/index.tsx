@@ -12,7 +12,7 @@ import { StreamersChat, VideoPlayer } from 'components/StreamersChat';
 
 export default function Home() {
   const [videoPlayers, setVideoPlayers] = useState<Array<VideoPlayer>>([]);
-  const [hideSearchInput, setHideSearchInput] = useState(true);
+  const [hideSearchInput, setHideSearchInput] = useState(false);
 
   const alreadyStreamLoaded = videoPlayers.some((v) => v.loaded);
 
@@ -42,7 +42,11 @@ export default function Home() {
         });
       }
     });
-  }, [videoPlayers]);
+
+    if (videoPlayers.length < 1 && hideSearchInput) {
+      setHideSearchInput(false);
+    }
+  }, [videoPlayers, hideSearchInput]);
 
   const addStreamer = (channel: string) => {
     setVideoPlayers((prevState) => [
@@ -73,12 +77,10 @@ export default function Home() {
             <div id={id} tw="w-full h-full" />
           </Container.Border>
         ))}
-        {videoPlayers.length < 9 && hideSearchInput && (
+        {videoPlayers.length < 9 && !hideSearchInput && (
           <Container.Border>
             {videoPlayers.length >= 1 && (
-              <Container.CloseButton
-                onClick={() => setHideSearchInput(false)}
-              />
+              <Container.CloseButton onClick={() => setHideSearchInput(true)} />
             )}
             <SearchInput onClick={addStreamer} />
           </Container.Border>
