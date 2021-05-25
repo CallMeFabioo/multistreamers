@@ -8,7 +8,7 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>
-          Multistreamers - Watch yout favorites streamers all at once!
+          Multistreamers - Watch your favorites streamers all at once!
         </title>
       </Head>
       <GlobalStyles />

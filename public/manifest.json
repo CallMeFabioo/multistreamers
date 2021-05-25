@@ -1,10 +1,10 @@
 {
-  "name": "Next.js Boilerplate",
-  "short_name": "Next.js Boilerplate",
+  "name": "Multistreamers",
+  "short_name": "Multistreamers",
   "icons": [],
-  "theme_color": "#06092b",
-  "background_color": "#06092b",
+  "theme_color": "#111827",
+  "background_color": "#111827",
   "start_url": "/",
   "display": "fullscreen",
-  "description": "A simple project starter to work with TypeScript, React, Next.js and Styled Components"
+  "description": "Watch your favorites streamers all at once!"
 }
