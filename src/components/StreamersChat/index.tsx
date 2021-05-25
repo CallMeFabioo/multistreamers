@@ -36,7 +36,7 @@ export const StreamersChat = ({ videoPlayers }: ChatProps) => {
         channel && loaded ? (
           <div
             key={id}
-            tw="absolute w-full opacity-0"
+            tw="absolute w-full opacity-0 z-10"
             css={[
               tw`height[calc(100vh - 52px)]`,
               active === id ? tw`opacity-100` : null
