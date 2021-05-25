@@ -31,7 +31,7 @@ export const SearchInput = ({ onClick }: SearchInputProps) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="group" tw="flex mb-2">
+      <div className="group" tw="flex">
         <input
           type="text"
           tw="text-gray-200 bg-gray-900 block border-r-0 rounded-md rounded-r-none border-gray-500 shadow-sm group-hocus:(ring ring-indigo-700) focus:(ring ring-indigo-700 ring-opacity-50 border-indigo-300 placeholder-gray-200)"
@@ -60,7 +60,9 @@ export const SearchInput = ({ onClick }: SearchInputProps) => {
         </button>
       </div>
       {error && (
-        <p tw="text-xs text-red-400 font-bold">Please, search a streamer!</p>
+        <p tw="text-xs text-red-400 font-bold mt-2">
+          Please, search a streamer!
+        </p>
       )}
     </form>
   );
