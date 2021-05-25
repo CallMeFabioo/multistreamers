@@ -35,7 +35,7 @@ export const SearchInput = ({ onClick }: SearchInputProps) => {
         <input
           type="text"
           tw="text-gray-200 bg-gray-900 block border-r-0 rounded-md rounded-r-none border-gray-500 shadow-sm group-hocus:(ring ring-indigo-700) focus:(ring ring-indigo-700 ring-opacity-50 border-indigo-300 placeholder-gray-200)"
-          placeholder="Search a twich streamer"
+          placeholder="Search a twitch streamer"
           value={channel}
           onChange={onChange}
         />
@@ -61,7 +61,7 @@ export const SearchInput = ({ onClick }: SearchInputProps) => {
       </div>
       {error && (
         <p tw="text-xs text-red-400 font-bold mt-2">
-          Please, search a streamer!
+          Please, search a Twitch streamer!
         </p>
       )}
     </form>
