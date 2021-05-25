@@ -21,7 +21,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    console.log(videoPlayers);
     videoPlayers.forEach(({ id, channel, loaded }) => {
       if (channel && !loaded) {
         new (window as DefaultWindow).Twitch.Embed(id, {
