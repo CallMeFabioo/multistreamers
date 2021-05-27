@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 
 export type VideoContainerProps = {
   videos: number;
-  hasChat?: boolean;
+  hasChat: boolean;
+  isSearchInputHided: boolean;
   children: ReactNode;
 };
 
@@ -17,11 +18,15 @@ const Container = styled.main<{ rows: number; cols: number }>(
 export const VideoContainer = ({
   videos,
   hasChat,
+  isSearchInputHided,
   children
 }: VideoContainerProps) => {
   let rows, cols;
 
-  if (videos < 4 && videos >= 1) {
+  if (videos === 1 && isSearchInputHided) {
+    rows = 1;
+    cols = 1;
+  } else if (videos < 4 && videos >= 1) {
     rows = 2;
     cols = 2;
   } else if (videos >= 4) {

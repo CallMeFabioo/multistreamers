@@ -5,7 +5,7 @@ export type SearchInputProps = {
   onClick: (channel: string) => void;
 };
 
-export const SearchInput = ({ onClick }: SearchInputProps) => {
+export const SearchInput = ({ onClick, ...props }: SearchInputProps) => {
   const [channel, setChannel] = useState('');
   const [error, setError] = useState(false);
 
@@ -30,7 +30,7 @@ export const SearchInput = ({ onClick }: SearchInputProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} {...props}>
       <div className="group" tw="flex">
         <input
           type="text"

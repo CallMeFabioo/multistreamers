@@ -4,7 +4,7 @@ import tw, { GlobalStyles as BaseStyles, theme } from 'twin.macro';
 const CustomStyles = createGlobalStyle`
   * {
     transition-property: color, background-color, border-color;
-    transition-duration: 100ms;
+    transition-duration: 50ms;
     transition-timing-function: ease-in-out;
   }
 

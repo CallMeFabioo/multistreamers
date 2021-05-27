@@ -7,33 +7,42 @@ export type VideoPlayer = {
   id: string;
   channel: string;
   loaded: boolean;
+  isChatClosed: boolean | null;
 };
 
 export type ChatProps = {
   videoPlayers: Array<VideoPlayer>;
+  closeChat: (channel: string) => void;
 };
 
-export const StreamersChat = ({ videoPlayers }: ChatProps) => {
+export const StreamersChat = ({ videoPlayers, closeChat }: ChatProps) => {
   const [active, setActive] = useState(
-    () => videoPlayers[videoPlayers.length - 1].id
+    () => videoPlayers[videoPlayers.length - 1]?.id
   );
 
   useEffect(() => {
-    setActive(() => videoPlayers[videoPlayers.length - 1].id);
+    setActive(() => videoPlayers[videoPlayers.length - 1]?.id);
   }, [videoPlayers]);
 
   return (
     <aside tw="col-span-1 gap-2 h-full relative">
       <div tw="grid grid-cols-4">
-        {videoPlayers.map(({ id, channel }) => (
-          <Button key={id} active={active === id} onClick={() => setActive(id)}>
-            {channel}
-          </Button>
-        ))}
+        {videoPlayers
+          .filter(({ isChatClosed }) => !isChatClosed)
+          .map(({ id, channel }) => (
+            <Button
+              key={id}
+              active={active === id}
+              onClick={() => setActive(id)}
+              closeChat={() => closeChat(id)}
+            >
+              {channel}
+            </Button>
+          ))}
       </div>
 
-      {videoPlayers.map(({ id, channel, loaded }) =>
-        channel && loaded ? (
+      {videoPlayers.map(({ id, channel, loaded, isChatClosed }) =>
+        channel && loaded && !isChatClosed ? (
           <div
             key={id}
             tw="absolute w-full opacity-0 z-10"
