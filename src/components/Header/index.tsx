@@ -11,9 +11,9 @@ export type HeaderProps = {
 
 export const Header = ({ hideSearchInput, onSearchClick }: HeaderProps) => {
   return (
-    <header tw="relative grid items-center grid-cols-3 p-2">
+    <header tw="relative grid items-center grid-cols-2 p-2">
       <Link href="/" passHref>
-        <a>
+        <a tw="place-self-start">
           <Image src="/logo.png" width={150} height={40} />
         </a>
       </Link>
