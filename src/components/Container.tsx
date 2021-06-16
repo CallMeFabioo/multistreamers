@@ -10,7 +10,7 @@ export type ContainerProps = {
 const Container = ({ hasChat, children }: ContainerProps) => (
   <div
     css={[
-      tw`grid h-full gap-2 p-2 text-white transition-all`,
+      tw`grid h-[calc(100vh - 56px)] gap-2 p-2 text-white transition-all`,
       hasChat && tw`grid-cols-4`
     ]}
   >
