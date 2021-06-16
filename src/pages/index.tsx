@@ -1,8 +1,8 @@
 import 'twin.macro';
+import Script from 'next/script';
 import React, { useCallback, useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 
-import { loadTwitchScrit } from 'lib/loadTwichScript';
 import { urlWithoutProtocol } from 'lib/urlWithoutProtocol';
 
 import { SearchInput } from 'components/SearchInput';
@@ -17,10 +17,6 @@ export default function Home() {
 
   const alreadyStreamLoaded = videoPlayers.some((v) => v.loaded);
   const hasChatOpen = videoPlayers.every((v) => v.isChatClosed);
-
-  useEffect(() => {
-    loadTwitchScrit();
-  }, []);
 
   useEffect(() => {
     videoPlayers.forEach(({ id, channel, loaded }) => {
@@ -69,7 +65,6 @@ export default function Home() {
   );
 
   const closeChat = (id: string) => {
-    console.log(id);
     setVideoPlayers((prevState) =>
       prevState.map((state) => {
         if (state.id === id) {
@@ -83,6 +78,11 @@ export default function Home() {
 
   return (
     <>
+      <Script
+        src="https://embed.twitch.tv/embed/v1.js"
+        strategy="afterInteractive"
+      />
+
       <Header onSearchClick={addStreamer} hideSearchInput={hideSearchInput} />
       <Container hasChat={alreadyStreamLoaded && !hasChatOpen}>
         <VideoContainer
