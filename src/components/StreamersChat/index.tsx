@@ -45,7 +45,7 @@ export const StreamersChat = ({ videoPlayers, closeChat }: ChatProps) => {
         channel && loaded && !isChatClosed ? (
           <div
             key={id}
-            tw="absolute w-full opacity-0 z-10"
+            tw="absolute w-full opacity-0"
             css={[
               tw`height[calc(100vh - 52px)]`,
               active === id ? tw`opacity-100` : null
