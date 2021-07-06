@@ -19,7 +19,7 @@ type EmbedParameters = {
 };
 
 type EmbedConstructor = {
-  new (id: string, parameters: Partial<EmbedParameters>): void;
+  new (id: string, parameters: Partial<EmbedParameters>): HTMLVideoElement;
   VIDEO_PLAY: string;
   VIDEO_REACY: string;
 };

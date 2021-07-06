@@ -7,6 +7,7 @@ import { StreamerChat } from 'components/StreamerChat';
 import { Stream } from 'components/Stream';
 
 import { useStreamer } from 'hooks/useStreamer';
+import { useRouter } from 'next/dist/client/router';
 import { nanoid } from 'nanoid';
 
 export type Streamer = {
@@ -16,28 +17,47 @@ export type Streamer = {
   loaded: boolean;
 };
 
-export default function Home() {
+export default function Streamers() {
+  const router = useRouter();
   const [toggleChat, setToggleChat] = React.useState(false);
   const { streamers, addStreamer } = useStreamer();
 
-  const onSearch = (channel: string) => {
-    addStreamer({
-      id: nanoid(),
-      channel,
-      main: streamers.length === 0,
-      loaded: false
-    });
+  const streamersQuery = router.query.streamers as string[];
 
-    if (streamers.length === 0) {
-      setToggleChat(true);
+  React.useEffect(() => {
+    if (streamersQuery && streamersQuery.length > 0) {
+      const newStreamers = streamersQuery.map((streamer) => ({
+        id: nanoid(),
+        channel: streamer,
+        main: streamersQuery.length === 0,
+        loaded: false
+      }));
+
+      addStreamer(newStreamers);
     }
-  };
+  }, [addStreamer, streamersQuery]);
+
+  const onSearch = React.useCallback(
+    (channel: string) => {
+      addStreamer({
+        id: nanoid(),
+        channel,
+        main: streamers.length === 0,
+        loaded: false
+      });
+
+      if (streamers.length === 0) {
+        setToggleChat(true);
+      }
+    },
+    [addStreamer, streamers.length]
+  );
 
   return (
     <>
       <Script
         src="https://embed.twitch.tv/embed/v1.js"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
       />
 
       <Header
