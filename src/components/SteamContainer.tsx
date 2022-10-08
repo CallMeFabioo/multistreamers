@@ -21,13 +21,16 @@ export const StreamContainer = ({
 
   return (
     <main
-      className={clsx('grid grid-row-2 gap-2 p-2 text-white transition-all', {
-        'grid-cols-4': toggleChat,
-        'grid-cols-3': !toggleChat
-      })}
+      className={clsx(
+        'grid grid-cols-1 lg:grid-cols-2 gap-2 p-2 text-white transition-all',
+        {
+          'grid-cols-4': toggleChat,
+          'grid-cols-3': !toggleChat
+        }
+      )}
     >
-      <section className="flex-1 col-span-3">
-        <ul className="gap-2 relative grid h-full grid-cols-2">
+      <section className="flex-1 lg:col-span-3">
+        <ul className="gap-2 relative grid h-full lg:grid-cols-2">
           {streamers.map((streamer) => (
             <Stream key={streamer.id} streamer={streamer} />
           ))}
