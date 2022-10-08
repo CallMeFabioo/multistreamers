@@ -35,7 +35,7 @@ export const StreamContainer = ({
       </section>
       {streamers.length > 0 && toggleChat && (
         <aside className="flex-1 relative">
-          <nav className="grid grid-cols-4 gap-2 mb-2 flex-wrap">
+          <nav className="flex gap-2 mb-2 flex-wrap">
             {streamers.map((streamer) => (
               <button
                 key={streamer.id}
