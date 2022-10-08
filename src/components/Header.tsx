@@ -13,18 +13,16 @@ export const Header = ({ onSearch, toggleChat }: HeaderProps) => {
   const { streamers } = useStreamer();
 
   return (
-    <header className="flex items-center flex-nowrap p-2">
-      <div className="flex-1">
-        <Link href="/" passHref>
-          <a className="flex-1">
-            <Image alt="" src="/icon.svg" width={40} height={40} />
-          </a>
-        </Link>
-      </div>
+    <header className="flex items-center justify-around flex-nowrap p-2">
+      <Link href="/" passHref>
+        <a>
+          <Image alt="" src="/icon.svg" width={40} height={40} />
+        </a>
+      </Link>
 
       <SearchInput onClick={onSearch} />
 
-      <div className="flex-1 text-right text-white text-xs font-mono">
+      <div className="text-right text-white text-xs font-mono">
         {streamers.length > 0 && (
           <button onClick={toggleChat}>Toggle chat</button>
         )}

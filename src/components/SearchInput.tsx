@@ -37,7 +37,7 @@ export const SearchInput = ({ onClick, ...props }: SearchInputProps) => {
     <form
       onSubmit={handleSubmit}
       {...props}
-      className="group flex items-center justify-center gap-2"
+      className="group flex items-center justify-center gap-2 mx-auto"
     >
       <fieldset className="group flex justify-center">
         <input
