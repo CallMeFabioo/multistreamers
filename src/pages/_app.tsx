@@ -1,10 +1,10 @@
+import 'styles/globals.css';
+
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
 
 import { StreamerProvider } from 'hooks/useStreamer';
-
-import { GlobalStyles } from 'styles/global';
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,11 +15,6 @@ function App({ Component, pageProps }: AppProps) {
         </title>
       </Head>
 
-      <GlobalStyles />
-      <Script
-        src="https://embed.twitch.tv/embed/v1.js"
-        strategy="afterInteractive"
-      />
       <StreamerProvider>
         <Component {...pageProps} />
       </StreamerProvider>

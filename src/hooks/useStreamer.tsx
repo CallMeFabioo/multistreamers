@@ -60,23 +60,7 @@ export const StreamerProvider = ({
 
   const removeStreamer = React.useCallback(
     (id: string) => {
-      // const embedElement = document.getElementById(id);
-
-      // if (embedElement) {
-      //   embedElement.innerHTML = '';
-      // }
-
       setStreamers(streamers.filter((s) => s.id !== id));
-      setStreamers((prevState) => {
-        return prevState.map((streamer, index) => {
-          if (index === 0 && !streamer.main) {
-            streamer.loaded = false;
-            streamer.main = true;
-          }
-
-          return streamer;
-        });
-      });
     },
     [streamers]
   );

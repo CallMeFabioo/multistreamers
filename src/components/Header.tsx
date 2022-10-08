@@ -1,6 +1,5 @@
-import 'twin.macro';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 import { SearchInput } from 'components/SearchInput';
 import { useStreamer } from 'hooks/useStreamer';
@@ -14,18 +13,18 @@ export const Header = ({ onSearch, toggleChat }: HeaderProps) => {
   const { streamers } = useStreamer();
 
   return (
-    <header tw="flex items-center flex-nowrap p-2">
-      <div tw="flex-1">
+    <header className="flex items-center flex-nowrap p-2">
+      <div className="flex-1">
         <Link href="/" passHref>
-          <a tw="flex-1">
-            <Image src="/icon.svg" width={40} height={40} />
+          <a className="flex-1">
+            <Image alt="" src="/icon.svg" width={40} height={40} />
           </a>
         </Link>
       </div>
 
       <SearchInput onClick={onSearch} />
 
-      <div tw="flex-1 text-right text-white text-xs font-mono">
+      <div className="flex-1 text-right text-white text-xs font-mono">
         {streamers.length > 0 && (
           <button onClick={toggleChat}>Toggle chat</button>
         )}

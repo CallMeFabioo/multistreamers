@@ -1,5 +1,3 @@
-import 'twin.macro';
-
 export const CloseButton = ({
   onClick = () => null
 }: {
@@ -8,11 +6,11 @@ export const CloseButton = ({
   return (
     <button
       onClick={onClick}
-      tw="absolute transition-opacity top-2 right-2 text-gray-500 opacity-5 hover:text-gray-200 group-hocus:opacity-100"
+      className="absolute transition-opacity top-2 right-2 text-gray-500 opacity-5 hover:text-gray-200 group-hover:opacity-100"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        tw="w-6 h-6"
+        className="w-6 h-6"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

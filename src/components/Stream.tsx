@@ -1,5 +1,4 @@
 import * as React from 'react';
-import tw from 'twin.macro';
 
 import type { Streamer } from 'pages';
 
@@ -8,31 +7,24 @@ import { useStreamer } from 'hooks/useStreamer';
 import { buildEmbed } from 'utils/buildEmbed';
 
 export type StreamProps = {
-  type?: 'main' | 'default';
   streamer: Streamer;
 };
 
-const Container = tw.li`relative border-2 border-dashed border-gray-800 rounded flex items-center justify-center`;
-const BigStream = tw(Container)`h-[520px] col-span-3 row-span-2`;
-const DefaultStream = tw(Container)`self-end h-64`;
-
-const Stream = ({ type = 'default', streamer }: StreamProps) => {
-  const { removeStreamer, updateStreamer } = useStreamer();
-  const Component = type === 'default' ? DefaultStream : BigStream;
+const Stream = ({ streamer }: StreamProps) => {
+  const { removeStreamer } = useStreamer();
+  const embedRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
-    buildEmbed(streamer);
-    // updateStreamer({ ...streamer, loaded: true });
-    if (!streamer.loaded) {
-      console.log('buildEmbed', { streamer });
+    if (embedRef.current.childElementCount === 0) {
+      buildEmbed(streamer);
     }
-  }, [streamer, updateStreamer]);
+  }, [streamer]);
 
   return (
-    <Component className="group">
-      <div id={streamer.id} tw="w-full h-full"></div>
+    <li className="relative border-2 border-dashed border-gray-800 rounded flex items-center justify-center gap-2 group h-stream-item">
+      <div ref={embedRef} id={streamer.id} className="w-full h-full" />
       <CloseButton onClick={() => removeStreamer(streamer.id)} />
-    </Component>
+    </li>
   );
 };
 export { Stream };
