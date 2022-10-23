@@ -10,7 +10,12 @@ export const StreamerChat = ({ streamer }: Props) => {
 
   return (
     <div className="absolute w-full h-chat">
-      <iframe src={buildChatUrl(streamer.channel)} height="100%" width="100%" />
+      <iframe
+        src={buildChatUrl(streamer.channel)}
+        allowFullScreen
+        height="100%"
+        width="100%"
+      />
     </div>
   );
 };

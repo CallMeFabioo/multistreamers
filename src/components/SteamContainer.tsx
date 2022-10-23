@@ -27,7 +27,12 @@ export const StreamContainer = ({
       })}
     >
       <section className="flex-1 lg:col-span-3">
-        <ul className="gap-2 relative grid h-full lg:grid-cols-2">
+        <ul
+          className={clsx('gap-1 relative grid h-full', {
+            'lg:grid-cols-2': streamers.length % 2 === 0,
+            'lg:grid-cols-3': streamers.length % 5 === 0
+          })}
+        >
           {streamers.map((streamer) => (
             <Stream key={streamer.id} streamer={streamer} />
           ))}
@@ -35,7 +40,7 @@ export const StreamContainer = ({
       </section>
       {streamers.length > 0 && toggleChat && (
         <aside className="flex-1 relative">
-          <nav className="flex gap-2 mb-2 flex-wrap">
+          <nav className="flex gap-1 mb-2 flex-wrap">
             {streamers.map((streamer) => (
               <button
                 key={streamer.id}
