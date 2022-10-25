@@ -6,7 +6,5 @@ export const buildChatUrl = (channel = '') => {
     ['parent', `www.${urlWithoutProtocol}`]
   ]);
 
-  const url = `https://www.twitch.tv/embed/${channel}/chat?${params}`;
-
-  return url;
+  return `https://www.twitch.tv/embed/${channel}/chat?${params}`;
 };
