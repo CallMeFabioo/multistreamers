@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Streamer } from 'pages';
+import { Streamer } from 'routes';
 import { useEffect, useState } from 'react';
 import { Stream } from './Stream';
 import { StreamerChat } from './StreamerChat';
@@ -29,7 +29,8 @@ export const StreamContainer = ({
       <section className="flex-1 lg:col-span-3">
         <ul
           className={clsx('gap-1 relative grid h-full', {
-            'lg:grid-cols-2': streamers.length % 2 === 0,
+            'lg:grid-cols-2':
+              streamers.length % 2 === 0 || [1, 3].includes(streamers.length),
             'lg:grid-cols-3': streamers.length % 5 === 0
           })}
         >

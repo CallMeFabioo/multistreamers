@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 import { SearchInput } from 'components/SearchInput';
 import { useStreamer } from 'hooks/useStreamer';
@@ -14,10 +14,8 @@ export const Header = ({ onSearch, toggleChat }: HeaderProps) => {
 
   return (
     <header className="flex items-center justify-around flex-wrap gap-2 lg:flex-nowrap p-2">
-      <Link href="/" passHref>
-        <a className="w-10 h-10">
-          <Image alt="" src="/icon.svg" width={40} height={40} />
-        </a>
+      <Link href="/" passHref className="w-10 h-10">
+        <Image alt="" src="/icon.svg" width={40} height={40} />
       </Link>
 
       <SearchInput onClick={onSearch} />

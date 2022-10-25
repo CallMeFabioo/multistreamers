@@ -1,4 +1,4 @@
-import type { Streamer } from 'pages';
+import type { Streamer } from 'routes';
 
 import { buildChatUrl } from 'utils/buildChatUrl';
 

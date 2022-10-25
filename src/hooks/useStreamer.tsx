@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { Streamer } from 'pages';
+import type { Streamer } from 'routes';
 
 type Context = {
   streamers: Streamer[];

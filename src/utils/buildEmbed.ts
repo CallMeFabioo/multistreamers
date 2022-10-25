@@ -1,4 +1,4 @@
-import type { Streamer } from 'pages';
+import type { Streamer } from 'routes';
 import { urlWithoutProtocol } from './urlWithoutProtocol';
 
 export const buildEmbed = (streamer: Streamer) => {
@@ -8,7 +8,13 @@ export const buildEmbed = (streamer: Streamer) => {
     throw new Error('Invalid arguments. Please, provide an id and a channel.');
   }
 
-  const embed = new (window as DefaultWindow).Twitch.Embed(id, {
+  const twitch = window as DefaultWindow;
+
+  if (!twitch.Twitch) {
+    throw new Error('Failed to load Twitch embed video.');
+  }
+
+  const embed = new twitch.Twitch.Embed(id, {
     channel,
     layout: 'video',
     width: '100%',
