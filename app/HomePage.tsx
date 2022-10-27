@@ -12,11 +12,7 @@ export function HomePage() {
   const { streamers, addStreamer } = useStreamer();
 
   const onSearch = (channel: string) => {
-    addStreamer({
-      id: nanoid(),
-      channel,
-      loaded: false
-    });
+    addStreamer({ id: nanoid(), channel });
 
     if (streamers.length === 0) {
       setToggleChat(true);

@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
+import { nanoid } from 'nanoid';
 
 import { Header } from '../../../src/components/Header';
 
 import { useStreamer } from '../../../src/hooks/useStreamer';
-import { nanoid } from 'nanoid';
 import { StreamContainer } from '../../../src/components/SteamContainer';
 
 export function MultiStreamers({ streams }: { streams: string[] }) {
@@ -14,30 +14,17 @@ export function MultiStreamers({ streams }: { streams: string[] }) {
 
   React.useEffect(() => {
     if (streams && streams.length > 0) {
-      const newStreamers = streams.map((streamer) => ({
-        id: nanoid(),
-        channel: streamer,
-        loaded: false
-      }));
-
-      addStreamer(newStreamers);
+      addStreamer(streams.map((s) => ({ id: nanoid(), channel: s })));
     }
   }, [addStreamer, streams]);
 
-  const onSearch = React.useCallback(
-    (channel: string) => {
-      addStreamer({
-        id: nanoid(),
-        channel,
-        loaded: false
-      });
+  const onSearch = (channel: string) => {
+    addStreamer({ id: nanoid(), channel });
 
-      if (streamers.length === 0) {
-        setToggleChat(true);
-      }
-    },
-    [addStreamer, streamers.length]
-  );
+    if (streamers.length === 0) {
+      setToggleChat(true);
+    }
+  };
 
   return (
     <>
