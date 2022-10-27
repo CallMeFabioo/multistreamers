@@ -1,9 +1,9 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 
 import { StreamerProvider } from 'hooks/useStreamer';
-import { HomePage } from 'routes/HomePage';
+import { HomePage } from '../app/HomePage';
 
 export default function RootPage() {
   return (
