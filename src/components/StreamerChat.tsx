@@ -1,5 +1,5 @@
-import { Streamer } from 'types';
-import { buildChatUrl } from 'utils/buildChatUrl';
+import { Streamer } from '../types';
+import { buildChatUrl } from '../utils/buildChatUrl';
 
 type Props = {
   streamer: Streamer;

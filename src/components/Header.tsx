@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { SearchInput } from 'components/SearchInput';
-import { useStreamer } from 'hooks/useStreamer';
+import { SearchInput } from './SearchInput';
+import { useStreamer } from '../hooks/useStreamer';
 
 export type HeaderProps = {
   onSearch(channel: string): void;

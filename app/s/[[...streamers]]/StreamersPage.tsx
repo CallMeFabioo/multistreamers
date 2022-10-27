@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import { Header } from 'components/Header';
+import { Header } from '../../../src/components/Header';
 
-import { useStreamer } from 'hooks/useStreamer';
+import { useStreamer } from '../../../src/hooks/useStreamer';
 import { nanoid } from 'nanoid';
-import { StreamContainer } from 'components/SteamContainer';
+import { StreamContainer } from '../../../src/components/SteamContainer';
 
 export function MultiStreamers({ streams }: { streams: string[] }) {
   const [toggleChat, setToggleChat] = React.useState(false);

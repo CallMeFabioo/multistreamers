@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { StreamerProvider } from 'hooks/useStreamer';
+import { StreamerProvider } from '../src/hooks/useStreamer';
 import { HomePage } from '../app/HomePage';
 
 export default function RootPage() {

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 
 import { useEffect, useState } from 'react';
-import { Streamer } from 'types';
+import { Streamer } from '../types';
 import { Stream } from './Stream';
 import { StreamerChat } from './StreamerChat';
 

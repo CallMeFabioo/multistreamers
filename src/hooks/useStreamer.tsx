@@ -1,5 +1,5 @@
 import React from 'react';
-import { Streamer } from 'types';
+import { Streamer } from '../types';
 
 type Context = {
   streamers: Streamer[];
