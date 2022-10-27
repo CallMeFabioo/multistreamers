@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 
-import type { Streamer } from 'routes';
-
 import { CloseButton } from 'components/CloseButton';
 import { useStreamer } from 'hooks/useStreamer';
 import { buildEmbed } from 'utils/buildEmbed';
+import { Streamer } from 'types';
 
 export type StreamProps = {
   streamer: Streamer;

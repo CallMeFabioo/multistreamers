@@ -1,5 +1,4 @@
-import type { Streamer } from 'routes';
-
+import { Streamer } from 'types';
 import { buildChatUrl } from 'utils/buildChatUrl';
 
 type Props = {

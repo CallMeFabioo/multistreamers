@@ -1,4 +1,4 @@
-import type { Streamer } from 'routes';
+import { Streamer } from 'types';
 import { urlWithoutProtocol } from './urlWithoutProtocol';
 
 export const buildEmbed = (streamer: Streamer) => {
