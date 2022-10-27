@@ -5,9 +5,15 @@ const withPWA = require('next-pwa')({
 });
 
 /** @type {import('next').NextConfig} */
-module.exports = withPWA({
-  reactStrictMode: true,
+module.exports = {
   experimental: {
     appDir: true
   }
-});
+};
+
+// module.exports = withPWA({
+//   reactStrictMode: true,
+//   experimental: {
+//     appDir: true
+//   }
+// });
