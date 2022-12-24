@@ -12,7 +12,7 @@ type Props = {
 export default function RootPage({ params }: Props) {
   return (
     <StreamerProvider>
-      {params?.streamers.length > 0 ? (
+      {params?.streamers?.length > 0 ? (
         <MultiStreamers streams={params.streamers} />
       ) : (
         <HomePage />
