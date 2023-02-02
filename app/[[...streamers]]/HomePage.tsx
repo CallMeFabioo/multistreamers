@@ -1,36 +1,44 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
-import { nanoid } from 'nanoid';
 
-import { Header } from '../../src/components/Header';
-import { StreamContainer } from '../../src/components/SteamContainer';
-import { useStreamer } from '../../src/hooks/useStreamer';
+import { Plus, UserPlus } from 'lucide-react';
+
+import { StreamButton } from '../../src/components/StreamButton';
+import { KeyShortcut } from '../../src/components/KeyShortchut';
+import { useStore } from '../../src/store/store';
+import clsx from 'clsx';
 
 export function HomePage() {
-  const router = useRouter();
-  const [toggleChat, setToggleChat] = React.useState(false);
-  const { streamers, addStreamer } = useStreamer();
-
-  const onSearch = (channel: string) => {
-    addStreamer({ id: nanoid(), channel });
-
-    router.push(`/${channel}`);
-
-    if (streamers.length === 0) {
-      setToggleChat(true);
-    }
-  };
+  const isAdding = useStore((state) => state.isAdding);
+  const setIsAdding = useStore((state) => state.setIsAdding);
 
   return (
-    <>
-      <Header
-        onSearch={onSearch}
-        toggleChat={() => setToggleChat(!toggleChat)}
-      />
+    <main className="grid h-stream-item transition-all">
+      <section className="gap-1 relative grid h-full">
+        <div className="w-full h-full border-2 border-dashed border-gray-800 rounded flex items-center justify-center group">
+          <div className="flex items-center flex-col gap-4">
+            <UserPlus className="w-12 h-12 text-indigo-600" size={48} />
+            <p className="text-white">Get started by adding a streaming.</p>
 
-      <StreamContainer streamers={streamers} toggleChat={toggleChat} />
-    </>
+            <StreamButton
+              onClick={() => {
+                setIsAdding(!isAdding);
+              }}
+              className={clsx('rounded-md border border-slate-600', {
+                'bg-gray-700': !!isAdding,
+                'cursor-not-allowed': !!isAdding,
+                'disabled:bg-indigo-500': !!isAdding,
+              })}
+              disabled={!!isAdding}
+            >
+              <Plus className="h-4 w-4" size={16} />
+              <span className="text-xs">Add Stream</span>
+              <KeyShortcut>Ctrl+K</KeyShortcut>
+            </StreamButton>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

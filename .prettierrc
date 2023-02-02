@@ -1,4 +1,15 @@
 {
-  "trailingComma": "none",
-  "singleQuote": true
+  "trailingComma": "all",
+  "singleQuote": true,
+  "importOrder": [
+    "^@utils/(.*)$",
+    "^@hooks/(.*)$",
+    "^@components/(.*)$",
+    "^@styles/(.*)$",
+    "^@src/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": true
 }

@@ -3,7 +3,7 @@ import '../src/styles/globals.css';
 import { AnalyticsWrapper } from '../src/components/Analytics';
 
 export default function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
@@ -19,7 +19,7 @@ export default function RootLayout({
           src="https://embed.twitch.tv/embed/v1.js"
         />
       </head>
-      <body>
+      <body className="antialiased bg-[#18181b]">
         {children}
 
         <AnalyticsWrapper />

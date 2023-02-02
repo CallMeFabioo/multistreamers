@@ -1,67 +1,73 @@
 import clsx from 'clsx';
 
-import { useEffect, useState } from 'react';
-import { Streamer } from '../types';
-import { Stream } from './Stream';
-import { StreamerChat } from './StreamerChat';
+import { useEffect } from 'react';
+import { useStore } from '@src/store/store';
+import { buildChatUrl } from '@utils/buildChatUrl';
 
-export type StreamContainerProps = {
-  toggleChat: boolean;
-  streamers: Streamer[];
-};
+import { buildEmbed } from '@utils/buildEmbed';
 
-export const StreamContainer = ({
-  streamers,
-  toggleChat
-}: StreamContainerProps) => {
-  const [selectedChat, setSelectedChat] = useState<Streamer>();
+import { StreamChatSelectInput } from '@components/StreamChatSelectInput';
+
+export const StreamContainer = () => {
+  const streamers = useStore((state) => [...state.streamers.values()]);
+  const isChatOpen = useStore((state) => state.isChatOpen);
+  const selectedStream = useStore((state) => state.selectedStream);
+  const setSelectedStream = useStore((state) => state.setSelectedStream);
 
   useEffect(() => {
-    setSelectedChat(streamers[0]);
+    if (!selectedStream && streamers.length > 0) {
+      setSelectedStream(streamers[0]);
+    }
+  }, [selectedStream, setSelectedStream, streamers]);
+
+  useEffect(() => {
+    streamers.map((streamer) => buildEmbed(streamer));
   }, [streamers]);
 
   return (
-    <main
-      className={clsx('grid grid-cols-2 gap-2 p-2 text-white transition-all', {
-        'lg:grid-cols-4': toggleChat,
-        'lg:grid-cols-3': !toggleChat
-      })}
-    >
-      <section className="flex-1 lg:col-span-3">
+    <main className="grid gap-2 h-stream-item text-white transition-all">
+      <section className="flex flex-1">
         <ul
-          className={clsx('gap-1 relative grid h-full', {
-            'lg:grid-cols-2':
-              streamers.length % 2 === 0 || [1, 3].includes(streamers.length),
-            'lg:grid-cols-3': streamers.length % 5 === 0
+          className={clsx('grid gap-1 flex-1 h-stream-item', {
+            'lg:grid-cols-1': [1].includes(streamers.length),
+            'lg:grid-cols-2': [2, 3, 4].includes(streamers.length),
+            'lg:grid-cols-3': [6].includes(streamers.length),
+            'lg:grid-cols-6': [5].includes(streamers.length),
+            'lg:grid-cols-8': [7].includes(streamers.length),
           })}
         >
-          {streamers.map((streamer) => (
-            <Stream key={streamer.id} streamer={streamer} />
+          {streamers.map((streamer, index) => (
+            <li
+              key={streamer.id}
+              className={clsx(
+                'grid gap-1 relative border-gray-800 rounded inset-0',
+                {
+                  'lg:col-span-3': index <= 1 && [5].includes(streamers.length),
+                  'lg:col-span-2':
+                    (index >= 2 && [5].includes(streamers.length)) ||
+                    (index >= 3 && [7].includes(streamers.length)) ||
+                    (index <= 2 && [7].includes(streamers.length)),
+                },
+              )}
+            >
+              <div id={streamer.id} className="w-full h-full" />
+            </li>
           ))}
         </ul>
+        {streamers.length > 0 && selectedStream && !isChatOpen && (
+          <aside className="flex flex-col items-center h-stream-item w-[340px]">
+            {selectedStream && <StreamChatSelectInput />}
+            <div className="w-full flex-1 h-chat">
+              <iframe
+                src={buildChatUrl(selectedStream.channel)}
+                allowFullScreen
+                height="100%"
+                width="100%"
+              />
+            </div>
+          </aside>
+        )}
       </section>
-      {streamers.length > 0 && toggleChat && (
-        <aside className="flex-1 relative">
-          <nav className="flex gap-1 mb-2 flex-wrap">
-            {streamers.map((streamer) => (
-              <button
-                key={streamer.id}
-                className={clsx(
-                  'px-4 py-1 rounded bg-indigo-600 hover:bg-indigo-600 focus:outline-none border border-transparent',
-                  {
-                    'bg-indigo-700 ring ring-indigo-500':
-                      streamer.id === selectedChat?.id
-                  }
-                )}
-                onClick={() => setSelectedChat(streamer)}
-              >
-                {streamer.channel}
-              </button>
-            ))}
-          </nav>
-          <StreamerChat streamer={selectedChat} />
-        </aside>
-      )}
     </main>
   );
 };
