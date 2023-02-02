@@ -44,7 +44,7 @@ export const Header = () => {
       .concat([channel])
       .join('/');
 
-    router.replace(`/${route}`);
+    router.push(`/${route}`);
   };
 
   return (
