@@ -50,16 +50,18 @@ export const Header = () => {
   return (
     <header className="flex items-center flex-wrap gap-2 lg:flex-nowrap">
       <div className="inline-flex flex-1 border border-transparent py-1 gap-2">
-        {streamers.map((streamer, index) => (
-          <StreamButton
-            active={streamer.id === selectedStream?.id}
-            key={streamer.id}
-          >
-            {/* <GripVertical className="h-4 w-4" size={16} /> */}
-            <p>{streamer.channel}</p>
-            <KeyShortcut>{++index}</KeyShortcut>
-          </StreamButton>
-        ))}
+        <div className="hidden lg:flex lg:gap-2">
+          {streamers.map((streamer, index) => (
+            <StreamButton
+              active={streamer.id === selectedStream?.id}
+              key={streamer.id}
+            >
+              {/* <GripVertical className="h-4 w-4" size={16} /> */}
+              <p>{streamer.channel}</p>
+              <KeyShortcut>{++index}</KeyShortcut>
+            </StreamButton>
+          ))}
+        </div>
 
         <StreamButton
           onClick={() => {
