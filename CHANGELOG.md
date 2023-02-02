@@ -1,5 +1,11 @@
 # multistreamers
 
+## 1.0.5
+
+### Patch Changes
+
+- chore: change router.replace to router.push
+
 ## 1.0.4
 
 ### Patch Changes
