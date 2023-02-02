@@ -1,14 +1,16 @@
-import { FormEvent, useEffect, useRef, useState } from 'react';
-import { ChevronFirst, ChevronLast, Plus, X } from 'lucide-react';
-import { nanoid } from 'nanoid';
-import { usePathname, useRouter } from 'next/navigation';
-import clsx from 'clsx';
-
 import { Tooltip } from 'flowbite-react';
+import { ChevronFirst, ChevronLast, Plus, X } from 'lucide-react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
+
+import { usePathname, useRouter } from 'next/navigation';
+
+import clsx from 'clsx';
+import { nanoid } from 'nanoid';
 
 import { useStore } from '@src/store/store';
-import { StreamButton } from '@components/StreamButton';
+
 import { KeyShortcut } from '@components/KeyShortchut';
+import { StreamButton } from '@components/StreamButton';
 
 export const Header = () => {
   const router = useRouter();

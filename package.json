@@ -1,6 +1,6 @@
 {
   "name": "multistreamers",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "packageManager": "pnpm@7.19.0",
   "scripts": {

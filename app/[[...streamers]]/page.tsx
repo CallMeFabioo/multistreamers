@@ -1,8 +1,10 @@
 'use client';
 
 import { useHotkeys } from 'react-hotkeys-hook';
-import { Header } from '@components/Header';
+
 import { useStore } from '@src/store/store';
+
+import { Header } from '@components/Header';
 
 import { HomePage } from './HomePage';
 import { MultiStreamers } from './StreamersPage';

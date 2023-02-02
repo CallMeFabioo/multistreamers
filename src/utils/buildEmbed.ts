@@ -1,6 +1,6 @@
-import { urlWithoutProtocol } from './urlWithoutProtocol';
-
 import type { Streamer } from '@src/types';
+
+import { urlWithoutProtocol } from './urlWithoutProtocol';
 
 export const buildEmbed = (streamer: Streamer) => {
   const { id, channel } = streamer;

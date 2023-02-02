@@ -1,5 +1,11 @@
 # multistreamers
 
+## 1.0.4
+
+### Patch Changes
+
+- Use @trivago/prettier-plugin-sort-imports
+
 ## 1.0.3
 
 ### Patch Changes

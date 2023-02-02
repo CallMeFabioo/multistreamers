@@ -1,6 +1,6 @@
-import '../src/styles/globals.css';
+import { AnalyticsWrapper } from '@components/Analytics';
 
-import { AnalyticsWrapper } from '../src/components/Analytics';
+import '@styles/globals.css';
 
 export default function RootLayout({
   children,

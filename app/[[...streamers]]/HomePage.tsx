@@ -1,13 +1,14 @@
 'use client';
 
+import { Plus, UserPlus } from 'lucide-react';
 import React from 'react';
 
-import { Plus, UserPlus } from 'lucide-react';
-
-import { StreamButton } from '../../src/components/StreamButton';
-import { KeyShortcut } from '../../src/components/KeyShortchut';
-import { useStore } from '../../src/store/store';
 import clsx from 'clsx';
+
+import { useStore } from '@src/store/store';
+
+import { KeyShortcut } from '@components/KeyShortchut';
+import { StreamButton } from '@components/StreamButton';
 
 export function HomePage() {
   const isAdding = useStore((state) => state.isAdding);

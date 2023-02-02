@@ -1,8 +1,8 @@
-import { Fragment } from 'react';
-import clsx from 'clsx';
 import { Listbox, Transition } from '@headlessui/react';
-
 import { Check, ChevronsUpDown } from 'lucide-react';
+import { Fragment } from 'react';
+
+import clsx from 'clsx';
 
 import { useStore } from '@src/store/store';
 

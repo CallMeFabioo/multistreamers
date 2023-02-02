@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 
 import Image from 'next/image';
+
 import ErrorPageImg from '../public/error-page.svg';
 
 export default function Error({ error }: { error: Error; reset: () => void }) {

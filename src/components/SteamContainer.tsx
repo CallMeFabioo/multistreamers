@@ -1,10 +1,11 @@
+import { useEffect } from 'react';
+
 import clsx from 'clsx';
 
-import { useEffect } from 'react';
-import { useStore } from '@src/store/store';
 import { buildChatUrl } from '@utils/buildChatUrl';
-
 import { buildEmbed } from '@utils/buildEmbed';
+
+import { useStore } from '@src/store/store';
 
 import { StreamChatSelectInput } from '@components/StreamChatSelectInput';
 

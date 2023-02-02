@@ -2,14 +2,20 @@
   "trailingComma": "all",
   "singleQuote": true,
   "importOrder": [
+    "react",
+    "next",
+    "<THIRD_PARTY_MODULES>",
     "^@utils/(.*)$",
+    "^@src/(.*)$",
     "^@hooks/(.*)$",
     "^@components/(.*)$",
     "^@styles/(.*)$",
-    "^@src/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "importOrderGroupNamespaceSpecifiers": true
+  "importOrderGroupNamespaceSpecifiers": true,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports"
+  ]
 }

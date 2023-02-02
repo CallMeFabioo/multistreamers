@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useEffect } from 'react';
+
 import { nanoid } from 'nanoid';
 
-import { Header } from '../../src/components/Header';
+import { useStore } from '@src/store/store';
 
-import { StreamContainer } from '../../src/components/SteamContainer';
-import { useStore } from '../../src/store/store';
+import { StreamContainer } from '@components/SteamContainer';
 
 export function MultiStreamers({ streams }: { streams: string[] }) {
   const addStreamer = useStore((state) => state.addStreamer);
