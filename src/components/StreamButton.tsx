@@ -14,7 +14,7 @@ export const StreamButton = ({
   return (
     <button
       className={clsx(
-        'flex items-center gap-2 rounded-md text-white hover:bg-slate-800 transition px-4 py-2 text-sm shadow-sm focus:relative',
+        'flex items-center gap-2 rounded-md px-4 py-2 text-sm text-white shadow-sm transition hover:bg-slate-800 focus:relative',
         { 'bg-slate-800': active },
         className,
       )}

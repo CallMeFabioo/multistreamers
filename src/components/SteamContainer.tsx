@@ -26,7 +26,7 @@ export const StreamContainer = () => {
   }, [streamers]);
 
   return (
-    <main className="grid gap-2 h-stream-item text-white transition-all">
+    <main className="grid h-stream-item gap-2 text-white transition-all">
       <section className="flex flex-1 flex-col lg:flex-row">
         <ul
           className={clsx('grid flex-1 grid-cols-1', {
@@ -41,7 +41,7 @@ export const StreamContainer = () => {
             <li
               key={streamer.id}
               className={clsx(
-                'grid w-full gap-1 relative border-gray-800 rounded inset-0',
+                'relative inset-0 grid w-full gap-1 rounded border-gray-800',
                 {
                   'lg:col-span-3': index <= 1 && [5].includes(streamers.length),
                   'lg:col-span-2':
@@ -51,14 +51,14 @@ export const StreamContainer = () => {
                 },
               )}
             >
-              <div id={streamer.id} className="w-full h-full" />
+              <div id={streamer.id} className="h-full w-full" />
             </li>
           ))}
         </ul>
         {streamers.length > 0 && selectedStream && !isChatOpen && (
-          <aside className="flex flex-col h-stream-item items-center min-w-[340px]">
+          <aside className="flex h-stream-item min-w-[340px] flex-col items-center">
             {selectedStream && <StreamChatSelectInput />}
-            <div className="w-full flex-1 h-chat">
+            <div className="h-chat w-full flex-1">
               <iframe
                 src={buildChatUrl(selectedStream.channel)}
                 allowFullScreen

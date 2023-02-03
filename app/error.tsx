@@ -13,11 +13,11 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <main className="bg-slate-900 relative overflow-hidden h-screen">
+    <main className="relative h-screen overflow-hidden bg-slate-900">
       <header className="absolute top-0 left-0 right-0 z-20">
-        <nav className="container mx-auto px-6 md:px-12 py-4">
-          <div className="md:flex justify-between items-center">
-            <div className="flex justify-between items-center">
+        <nav className="container mx-auto px-6 py-4 md:px-12">
+          <div className="items-center justify-between md:flex">
+            <div className="flex items-center justify-between">
               <div className="md:hidden">
                 <button className="text-gray-800 focus:outline-none">
                   <svg
@@ -40,18 +40,18 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
           </div>
         </nav>
       </header>
-      <div className="container mx-auto h-screen pt-32 md:pt-0 px-6 z-10 flex items-center justify-between">
-        <div className="container mx-auto px-6 flex flex-col-reverse lg:flex-row justify-between items-center relative">
-          <div className="w-full mb-16 md:mb-8 text-center lg:text-left">
-            <h1 className="font-light font-sans text-center lg:text-left text-5xl lg:text-8xl mt-12 md:mt-0 text-gray-200">
+      <div className="container z-10 mx-auto flex h-screen items-center justify-between px-6 pt-32 md:pt-0">
+        <div className="container relative mx-auto flex flex-col-reverse items-center justify-between px-6 lg:flex-row">
+          <div className="mb-16 w-full text-center md:mb-8 lg:text-left">
+            <h1 className="mt-12 text-center font-sans text-5xl font-light text-gray-200 md:mt-0 lg:text-left lg:text-8xl">
               Sorry, something wrong happen!
             </h1>
 
-            <h1 className="font-light font-sans text-center lg:text-left text-5xl lg:text-5xl mt-12 text-gray-200">
+            <h1 className="mt-12 text-center font-sans text-5xl font-light text-gray-200 lg:text-left lg:text-5xl">
               Reload the page!
             </h1>
           </div>
-          <div className="block w-full mx-auto md:mt-0 relative max-w-md lg:max-w-2xl">
+          <div className="relative mx-auto block w-full max-w-md md:mt-0 lg:max-w-2xl">
             <Image src={ErrorPageImg} alt="" />
           </div>
         </div>

@@ -48,8 +48,8 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex items-center flex-wrap gap-2 lg:flex-nowrap">
-      <div className="inline-flex flex-1 border border-transparent py-1 gap-2">
+    <header className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+      <div className="inline-flex flex-1 gap-2 border border-transparent py-1">
         <div className="hidden lg:flex lg:gap-2">
           {streamers.map((streamer, index) => (
             <StreamButton
@@ -91,20 +91,20 @@ export const Header = () => {
             ref={addChannelInputRef}
             type="text"
             placeholder="Search stream..."
-            className="transition peer placeholder-white p-2 text-white border border-slate-800 rounded-l-md border-r-0 bg-transparent group-hover:border-slate-700 sm:text-xs focus:ring-indigo-500 focus:border-indigo-500"
+            className="peer rounded-l-md border border-r-0 border-slate-800 bg-transparent p-2 text-white placeholder-white transition focus:border-indigo-500 focus:ring-indigo-500 group-hover:border-slate-700 sm:text-xs"
             onChange={(ev) => setChannel(ev.target.value)}
           />
 
           <StreamButton
             type="submit"
-            className="rounded-tl-none rounded-bl-none border border-indigo-800 bg-indigo-600 border-l-0 hover:bg-slate-700 group-hover:border-slate-700 peer-focus:rounded-r-md peer-focus:border-indigo-500 peer-focus:ring-1"
+            className="rounded-tl-none rounded-bl-none border border-l-0 border-indigo-800 bg-indigo-600 hover:bg-slate-700 group-hover:border-slate-700 peer-focus:rounded-r-md peer-focus:border-indigo-500 peer-focus:ring-1"
           >
             <Plus className="h-4 w-4" size={16} />
           </StreamButton>
         </form>
       </div>
       {selectedStream && (
-        <div className="flex relative">
+        <div className="relative flex">
           <Tooltip
             content={isChatOpen ? 'Expand' : 'Collapse'}
             placement="left"

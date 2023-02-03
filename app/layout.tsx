@@ -19,7 +19,7 @@ export default function RootLayout({
           src="https://embed.twitch.tv/embed/v1.js"
         />
       </head>
-      <body className="antialiased bg-[#18181b]">
+      <body className="bg-[#18181b] antialiased">
         {children}
 
         <AnalyticsWrapper />

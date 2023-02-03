@@ -16,10 +16,10 @@ export function HomePage() {
 
   return (
     <main className="grid h-stream-item transition-all">
-      <section className="gap-1 relative grid h-full">
-        <div className="w-full h-full border-2 border-dashed border-gray-800 rounded flex items-center justify-center group">
-          <div className="flex items-center flex-col gap-4">
-            <UserPlus className="w-12 h-12 text-indigo-600" size={48} />
+      <section className="relative grid h-full gap-1">
+        <div className="group flex h-full w-full items-center justify-center rounded border-2 border-dashed border-gray-800">
+          <div className="flex flex-col items-center gap-4">
+            <UserPlus className="h-12 w-12 text-indigo-600" size={48} />
             <p className="text-white">Get started by adding a streaming.</p>
 
             <StreamButton

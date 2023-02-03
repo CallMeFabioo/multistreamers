@@ -5,14 +5,17 @@ module.exports = {
     './src/**/*.tsx',
     './src/pages/**/*.tsx',
     './src/components/**/*.tsx',
-    './node_modules/flowbite-react/**/*.js'
+    './node_modules/flowbite-react/**/*.js',
   ],
   theme: {
     extend: {
       height: {
-        'stream-item': 'calc(100vh - 46px)'
-      }
-    }
+        'stream-item': 'calc(100vh - 46px)',
+      },
+    },
   },
-  plugins: [require('@tailwindcss/forms'), require('flowbite/plugin')]
+  plugins: [
+    require.resolve('@tailwindcss/forms'),
+    require.resolve('flowbite/plugin'),
+  ],
 };

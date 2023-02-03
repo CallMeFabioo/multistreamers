@@ -1,5 +1,12 @@
 # multistreamers
 
+## 1.0.6
+
+### Patch Changes
+
+- add "prettier-plugin-tailwindcss" to prettier.config.js
+- dc4f000: chore: refactor on mobile
+
 ## 1.0.5
 
 ### Patch Changes
