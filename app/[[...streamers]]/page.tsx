@@ -13,7 +13,7 @@ type Props = {
   params: { streamers?: string[] };
 };
 
-export default function RootPage({ params }: Props) {
+export default function StreamersPage({ params }: Props) {
   const isAdding = useStore((state) => state.isAdding);
   const streamers = useStore((state) => state.streamers);
   const setIsAdding = useStore((state) => state.setIsAdding);
