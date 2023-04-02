@@ -4,7 +4,11 @@
 
 ### Patch Changes
 
+<<<<<<< HEAD
 - update dependencies
+=======
+- c554287: update dependencies
+>>>>>>> 81c4e6c (chore: update dependencies)
 
 ## 1.0.6
 
