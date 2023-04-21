@@ -49,7 +49,7 @@ export default function Error({ error }: { error: Error; reset: () => void }) {
             </h1>
 
             <h1 className="mt-12 text-center font-sans text-5xl font-light text-gray-200 lg:text-left lg:text-5xl">
-              Reload the page!
+              Reload the page! {error.message} {error.name}
             </h1>
           </div>
           <div className="relative mx-auto block w-full max-w-md md:mt-0 lg:max-w-2xl">
