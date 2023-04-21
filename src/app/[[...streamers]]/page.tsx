@@ -18,7 +18,6 @@ export default function StreamersPage({ params }: Props) {
   const streamers = useStore((state) => state.streamers);
   const setIsAdding = useStore((state) => state.setIsAdding);
   const setSelectedStream = useStore((state) => state.setSelectedStream);
-  throw new Error('Eita');
 
   useHotkeys(
     'ctrl+k',
