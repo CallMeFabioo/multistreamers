@@ -2,19 +2,20 @@
 
 import { useEffect } from 'react';
 
+import { log } from 'next-axiom';
 import Image from 'next/image';
 
-import ErrorPageImg from '../public/error-page.svg';
+import ErrorPageImg from '../../public/error-page.svg';
 
 export default function Error({ error }: { error: Error; reset: () => void }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error);
+    log.error('Something went wrong', error);
   }, [error]);
 
   return (
     <main className="relative h-screen overflow-hidden bg-slate-900">
-      <header className="absolute top-0 left-0 right-0 z-20">
+      <header className="absolute left-0 right-0 top-0 z-20">
         <nav className="container mx-auto px-6 py-4 md:px-12">
           <div className="items-center justify-between md:flex">
             <div className="flex items-center justify-between">
