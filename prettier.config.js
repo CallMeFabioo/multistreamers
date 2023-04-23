@@ -3,8 +3,8 @@ module.exports = {
   trailingComma: 'all',
   singleQuote: true,
   importOrder: [
-    'react',
-    'next',
+    '^react',
+    '^next',
     '<THIRD_PARTY_MODULES>',
     '^@utils/(.*)$',
     '^@src/(.*)$',

@@ -1,9 +1,9 @@
 'use client';
 
-import { Plus, UserPlus } from 'lucide-react';
 import React from 'react';
 
 import clsx from 'clsx';
+import { Plus, UserPlus } from 'lucide-react';
 
 import { useStore } from '@src/store/store';
 

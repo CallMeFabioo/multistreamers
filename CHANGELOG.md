@@ -1,14 +1,17 @@
 # multistreamers
 
+## 1.0.8
+
+### Patch Changes
+
+- update dependencies
+
 ## 1.0.7
 
 ### Patch Changes
 
-<<<<<<< HEAD
-- update dependencies
-=======
+- # update dependencies
 - c554287: update dependencies
->>>>>>> 81c4e6c (chore: update dependencies)
 
 ## 1.0.6
 

@@ -1,10 +1,10 @@
-import { Tooltip } from 'flowbite-react';
-import { ChevronFirst, ChevronLast, Plus, X } from 'lucide-react';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 
 import { usePathname, useRouter } from 'next/navigation';
 
 import clsx from 'clsx';
+import { Tooltip } from 'flowbite-react';
+import { ChevronFirst, ChevronLast, Plus, X } from 'lucide-react';
 import { nanoid } from 'nanoid';
 
 import { useStore } from '@src/store/store';
@@ -97,7 +97,7 @@ export const Header = () => {
 
           <StreamButton
             type="submit"
-            className="rounded-tl-none rounded-bl-none border border-l-0 border-indigo-800 bg-indigo-600 hover:bg-slate-700 group-hover:border-slate-700 peer-focus:rounded-r-md peer-focus:border-indigo-500 peer-focus:ring-1"
+            className="rounded-bl-none rounded-tl-none border border-l-0 border-indigo-800 bg-indigo-600 hover:bg-slate-700 group-hover:border-slate-700 peer-focus:rounded-r-md peer-focus:border-indigo-500 peer-focus:ring-1"
           >
             <Plus className="h-4 w-4" size={16} />
           </StreamButton>
