@@ -1,5 +1,11 @@
 # multistreamers
 
+## 1.0.10
+
+### Patch Changes
+
+- update dependencies
+
 ## 1.0.9
 
 ### Patch Changes

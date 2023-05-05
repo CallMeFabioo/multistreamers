@@ -7,7 +7,4 @@ module.exports = withAxiom({
   images: {
     domains: ['via.placeholder.com'],
   },
-  experimental: {
-    appDir: true,
-  },
 });
