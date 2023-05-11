@@ -1,4 +1,4 @@
-import { AnalyticsWrapper } from '@components/Analytics';
+import { Analytics } from '@vercel/analytics/react';
 
 import '@styles/globals.css';
 
@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className="bg-[#18181b] antialiased">
         {children}
 
-        <AnalyticsWrapper />
+        <Analytics />
       </body>
     </html>
   );
