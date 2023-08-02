@@ -5,6 +5,6 @@ module.exports = withAxiom({
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['via.placeholder.com'],
-  },
-});
+    domains: ['via.placeholder.com']
+  }
+};

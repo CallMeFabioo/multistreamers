@@ -1,3 +1,7 @@
+'use client';
+
+import { Tooltip } from 'flowbite-react';
+import { ChevronFirst, ChevronLast, Plus, X } from 'lucide-react';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 
 import { usePathname, useRouter } from 'next/navigation';
@@ -11,6 +15,8 @@ import { useStore } from '@src/store/store';
 
 import { KeyShortcut } from '@components/KeyShortchut';
 import { StreamButton } from '@components/StreamButton';
+
+import pkg from '../../package.json';
 
 export const Header = () => {
   const router = useRouter();
@@ -48,8 +54,12 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
-      <div className="inline-flex flex-1 gap-2 border border-transparent py-1">
+    <header
+      className="flex flex-wrap items-center gap-2 lg:flex-nowrap"
+      data-app-name={pkg.name}
+      data-app-version={pkg.version}
+    >
+      <div className="inline-flex flex-1 gap-2 border border-transparent py-1 ">
         <div className="hidden lg:flex lg:gap-2">
           {streamers.map((streamer, index) => (
             <StreamButton

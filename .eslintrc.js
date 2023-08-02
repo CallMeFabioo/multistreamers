@@ -2,12 +2,7 @@
  * @type {import('eslint').Linter.Config}
  */
 module.exports = {
-  extends: [
-    'next',
-    'plugin:react-hooks/recommended',
-    'prettier',
-    'next/core-web-vitals'
-  ],
+  extends: ['next','prettier'],
   settings: {
     react: {
       version: 'detect'
