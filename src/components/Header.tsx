@@ -1,7 +1,5 @@
 'use client';
 
-import { Tooltip } from 'flowbite-react';
-import { ChevronFirst, ChevronLast, Plus, X } from 'lucide-react';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 
 import { usePathname, useRouter } from 'next/navigation';
@@ -33,7 +31,7 @@ export const Header = () => {
 
   useEffect(() => {
     if (addChannelInputRef.current) {
-      addChannelInputRef.current.focus();
+      addChannelInputRef.current?.focus();
     }
   }, [isAdding]);
 
@@ -45,7 +43,7 @@ export const Header = () => {
     addStreamer({ id: nanoid(), channel });
 
     const route = pathname
-      .split('/')
+      ?.split('/')
       .filter(Boolean)
       .concat([channel])
       .join('/');
